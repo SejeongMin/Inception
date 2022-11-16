@@ -1,10 +1,10 @@
 FROM debian:buster
 
 RUN apt-get update
-RUN sudo apt -y install lsb-release apt-transport-https ca-certificates wget && \
-    sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
-    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list && \
-    sudo apt update
+RUN apt -y install lsb-release apt-transport-https ca-certificates wget && \
+    wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
+    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list && \
+    apt update
 
 # php download
 RUN apt-get install -y php8.1 php8.1-fpm php8.1-mysqli mariadb-client curl redis-tools dumb-init sendmail
