@@ -25,6 +25,8 @@ lc-messages-dir         = /usr/share/mysql
 
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
+
+# 모든 ip에서 mariadb 접속 허용
 bind-address            = 0.0.0.0
 
 #
