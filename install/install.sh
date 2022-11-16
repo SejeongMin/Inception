@@ -1,8 +1,3 @@
-# 사용자 전환
-su -
-
-# Repository 인덱스 업데이트
-apt-get update
 
 # sudo 설치
 apt-get install -y sudo

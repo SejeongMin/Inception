@@ -29,7 +29,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 # 도커 서비스 재시작 시 컨테이너를 종료하지 않도록 설정
-sudo su -c 'printf "{\n\t\"live-restore\": true\n}" > /etc/docker/docker.json’
+sudo su -c 'printf "{\n\t\"live-restore\": true\n}" > /etc/docker/docker.json'
 
 # 도커 서비스 재시작
 sudo systemctl restart docker
