@@ -22,8 +22,8 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 
 	mv /var/www/wp-config.php /var/www/html/
 	echo "Wordpress: creating users..."
-	wp core install --allow-root --url=${WP_URL} --title=${WP_TITLE} --admin_user=${WP_ADMIN_LOGIN} --admin_password=${WP_ADMIN_PASSWORD} --admin_email=${WP_ADMIN_EMAIL}
-	wp user create --allow-root ${WP_USER_LOGIN} ${WP_USER_EMAIL} --user_pass=${WP_USER_PASSWORD} --role=author --allow-root;
+	wp core install --allow-root --url=semin.42.fr --title=wordpress --admin_user=eval --admin_password=1234 --admin_email=eval@42.fr
+	wp user create --allow-root semin semin@42.fr --user_pass=1234 --role=author --allow-root;
 
 	chown -R www-data:www-data /var/www/*;
 	chown -R 755 /var/www/*;
