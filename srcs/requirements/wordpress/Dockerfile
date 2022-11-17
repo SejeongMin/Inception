@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y php8.1 php8.1-fpm php8.1-mysqli mariadb
 # wp-cli download
 RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp && \
     chmod +x /usr/local/bin/wp && \
-    wp core cownload --allow-root path=/var/www/wordpress
+    mkdir -p /var/www/wordpress && \
+    wp core download --allow-root --path=/var/www/wordpress
 
 EXPOSE 9000
 

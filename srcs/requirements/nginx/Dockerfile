@@ -5,7 +5,8 @@ RUN apt-get install -y nginx openssl dumb-init
 
 EXPOSE 443
 
-COPY ./conf/default /etc/nginx/sites-enabled/default
+# COPY ./conf/default /etc/nginx/sites-enabled/default
+COPY ./conf/default /tmp/default
 # COPY ./conf/default /etc/nginx/sites-available/
 COPY ./tools/nginx_start.sh /tmp/
 

@@ -27,7 +27,7 @@ if [ ! -f /var/www/wordpress/wp-config.php ]; then
 
 	# nginx 서버에서 운용 가능
 	# chown -R www-data:www-data /var/www/*;
-	chown -R www-data:www-data /var/www/wordpress/wordpress
+	chown -R www-data:www-data /var/www/*
 	# chown -R 755 /var/www/*;
 
 	echo "Wordpress: set up!"
