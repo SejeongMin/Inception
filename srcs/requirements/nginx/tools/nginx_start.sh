@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -f /var/www/wordpress/index.php ]; then
+    mkdir -p /var/www/wordpress
+    wp core download --allow-root --path=/var/www/wordpress
+fi
+
 if [ ! -f /etc/ssl/certs/nginx.crt ]; then
     echo "Nginx: setting up ssl ...";
 
