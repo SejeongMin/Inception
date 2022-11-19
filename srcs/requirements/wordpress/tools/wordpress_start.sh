@@ -41,26 +41,26 @@
 # exec "$@"
 
 #!/bin/bash
+set -e
 
-	sed -i "s/listen = \/run\/php\/php8.1-fpm.sock/listen = 9000/" "/etc/php/8.1/fpm/pool.d/www.conf";
-	chown -R www-data:www-data /var/www/*;
-	chown -R 755 /var/www/*;
-	mkdir -p /run/php/;
-	touch /run/php/php8.1-fpm.pid;
+cd /var/www/html/wordpress
 
-if [ ! -f /var/www/html/wp-config.php ]; then
-	echo "Wordpress: setting up..."
-	mkdir -p /var/www/html
-	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar;
-	chmod +x wp-cli.phar; 
-	mv wp-cli.phar /usr/local/bin/wp;
-	cd /var/www/html;
-	wp core download --allow-root;
-	mv /var/www/wp-config.php /var/www/html/
-	echo "Wordpress: creating users..."
-	wp core install --allow-root --url=semin.42.fr --title="Inception" --admin_user=semin --admin_password=1234 --admin_email=semin@42.fr
-	wp user create --allow-root wpuser wpuser@42.fr --user_pass=1234;
-	echo "Wordpress: set up!"
+if [ ! -f /var/www/html/wordpress/index.php ]; then
+	wp core download --allow-root
 fi
+
+if [ ! -f /var/www/html/wordpress/wp-config.php ]; then
+	wp config create --dbname=wordpress --dbuser=semin --dbpass=1234 --dbhost=mariadb --allow-root
+
+	wp core install --url=semin.42.fr --title="semin inception" --admin_user=semin --admin_password=1234 --admin_email=semin@student.42seoul.kr --skip-email --allow-root
+	wp user create wpuser wpuser@student.42seoul.kr --user_pass=1234 --role=author --allow-root
+
+	chown -R www-data:www-data /var/www/html/wordpress
+fi
+
+service php8.1-fpm start
+service php8.1-fpm stop
+
+echo "Starting Wordpress Container..."
 
 exec "$@"
