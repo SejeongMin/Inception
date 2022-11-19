@@ -1,17 +1,24 @@
-all: 
-	@docker-compose -f ./srcs/docker-compose.yml up
+NAME = Inception
 
-down:
-	@docker-compose -f ./srcs/docker-compose.yml down
+FILE = srcs/docker-compose.yml
+VOLUME = /home/semin/data
 
-re:
-	@docker-compose -f srcs/docker-compose.yml up --build
+all : $(NAME)
+
+$(NAME):
+	@ sudo mkdir -p $(VOLUME)/wordpress $(VOLUME)/mariadb $(VOLUME)/log
+	@ docker-compose -f $(FILE) -p $(NAME) up -data
 
 clean:
-	@docker stop $$(docker ps -qa);\
-	docker rm $$(docker ps -qa);\
-	docker rmi -f $$(docker images -qa);\
-	docker volume rm $$(docker volume ls -q);\
-	docker network rm $$(docker network ls -q);\
+	@ docker-compose -f $(FILE) -p $(NAME) down --rmi all --volumes --remove-orphans
 
-.PHONY: all re down clean
+fclean:
+	@ sudo rm -rf $(VOLUME)
+	@ docker system prune -a
+
+re: fclean all
+
+logs:
+	@ docker-compose -f $(FILE) -p $(NAME) logs
+
+.PHONY: all, clean, fclean, re, logs

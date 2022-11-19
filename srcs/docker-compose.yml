@@ -8,14 +8,14 @@ networks:
 volumes:
   wp:
     driver: local
-    name: wp
+    name: wordpress
     driver_opts:
       type: none
       o: bind
       device: /home/semin/data/wordpress
   db:
     driver: local
-    name: db
+    name: mariadb
     driver_opts:
       type: none
       o: bind
@@ -25,6 +25,8 @@ services:
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
+    ports:
+      - 3306:3306
     env_file:
       - .env
     volumes:
@@ -36,12 +38,14 @@ services:
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
+    ports:
+      - 9000:9000
     env_file:
       - .env
     depends_on:
       - mariadb
     volumes:
-      - wp:/var/www/html
+      - wp:/var/www/wordpress
     networks:
       - app-network
     restart: unless-stopped
@@ -54,7 +58,7 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - wp:/var/www/html
+      - wp:/var/www/wordpress
     networks:
       - app-network
     restart: unless-stopped
