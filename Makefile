@@ -7,7 +7,7 @@ all : $(NAME)
 
 $(NAME):
 	@ sudo mkdir -p $(VOLUME)/wordpress $(VOLUME)/mariadb $(VOLUME)/log
-	@ docker-compose -f $(FILE) -p $(NAME) up -data
+	@ docker-compose -f $(FILE) -p $(NAME) up -d
 
 clean:
 	@ docker-compose -f $(FILE) -p $(NAME) down --rmi all --volumes --remove-orphans

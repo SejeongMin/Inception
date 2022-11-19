@@ -18,7 +18,7 @@ if [ ! -f /var/www/wordpress/wp-config.php ]; then
 
 	# cd /var/www/wordpress;
 
-	# wp config create --dbname=wordpress --dbuser=semin --dbpass=1234 --dbhost=mariadb --allow-root;
+	wp config create --dbname=wordpress --dbuser=semin --dbpass=1234 --dbhost=mariadb --allow-root;
 
 	# mv /var/www/wp-config.php /var/www/wordpress/
 	echo "Wordpress: creating users..."

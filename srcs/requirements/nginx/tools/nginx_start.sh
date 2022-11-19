@@ -6,7 +6,6 @@ if [ ! -f /etc/ssl/certs/nginx.crt ]; then
     # self-signed ssl certification
     openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/ssl/private/nginx.key -out /etc/ssl/certs/nginx.crt -subj "/C=KR/ST=Seoul/L=Seoul/O=wordpress/CN=semin.42.fr";
     echo "Nginx: ssl is set up!";
-    cp /tmp/default /etc/nginx/sites-available/default
     # cp /tmp/default /etc/nginx/conf.d/default.conf
 
     # wait for wordpress
