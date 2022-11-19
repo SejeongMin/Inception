@@ -55,7 +55,7 @@ services:
     build: ./requirements/nginx
     ports:
       - "443:443"
-    env_files:
+    env_file:
       - .env
     depends_on:
       - wordpress
