@@ -12,7 +12,7 @@ $(NAME):
 clean:
 	@ docker-compose -f $(FILE) -p $(NAME) down --rmi all --volumes --remove-orphans
 
-fclean:
+fclean: clean
 	@ sudo rm -rf $(VOLUME)
 	@ docker system prune -a
 

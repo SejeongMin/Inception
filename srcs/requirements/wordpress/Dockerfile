@@ -6,7 +6,7 @@ RUN apt -y install lsb-release apt-transport-https ca-certificates wget && \
     echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
 
 # php download
-RUN apt-get update && apt-get install -y php8.1 php8.1-fpm php8.1-mysqli mariadb-client curl dumb-init sendmail
+RUN apt-get update && apt-get install -y php8.1 php8.1-fpm php8.1-mysqli mariadb-client curl dumb-init
 
 # wp-cli download
 RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp && \

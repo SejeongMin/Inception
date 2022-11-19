@@ -60,14 +60,16 @@ server {
 	# pass PHP scripts to FastCGI server
 	#
 	location ~ \.php$ {
-		include snippets/fastcgi-php.conf;
-
-		# fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		# include snippets/fastcgi-php.conf;
+		include /etc/nginx/fastcgi_params;
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass wordpress:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_index index.php;
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME /var/www/wordpress/$fastcgi_script_name;
-        # fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+        # fastcgi_param SCRIPT_FILENAME /var/www/wordpress/$fastcgi_script_name;
+
+        # include fastcgi_params;
         # fastcgi_param PATH_INFO $fastcgi_path_info;
 		# include snippets/fastcgi-php.conf;
 	

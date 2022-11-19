@@ -33,7 +33,7 @@ services:
       - db:/var/lib/mysql
     networks:
       - app-network
-    restart: unless-stopped
+    restart: always
 
   wordpress:
     container_name: wordpress
@@ -48,7 +48,7 @@ services:
       - wp:/var/www/wordpress
     networks:
       - app-network
-    restart: unless-stopped
+    restart: always
 
   nginx:
     container_name: nginx
@@ -61,4 +61,4 @@ services:
       - wp:/var/www/wordpress
     networks:
       - app-network
-    restart: unless-stopped
+    restart: always
